@@ -3,7 +3,9 @@
 #include <chrono>
 
 #include "Log.h"
+#include "Algorithm.h"
 
+template <typename T>
 class TimeComplexity
 {
 private:
@@ -15,12 +17,18 @@ private:
     std::chrono::time_point<std::chrono::_V2::system_clock> start;
 
 public:
-    TimeComplexity() : delta(0.00), complexity(0), iterations(0) {}
+    TimeComplexity(Algorithm<T> &algorithm) : delta(0.00), complexity(0), iterations(0)
+    {
+        Start();
+        algorithm.Run();
+        Stop();
+        PrintResult();
+    }
 
     ~TimeComplexity()
     {
         //PrintResult();
-        Log(GREEN, std::to_string(delta));
+        //Log(GREEN, std::to_string(delta));
     }
 
     void PrintResult()

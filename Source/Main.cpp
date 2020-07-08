@@ -1,26 +1,14 @@
 #include <vector>
-
+#include "Bubble_Sort.h"
 #include "Time_Complexity.h"
 
-std::vector<int> vector;
+using T = int;
+std::vector<T> vector;
 
 int main()
 {
-    {
-        TimeComplexity timeComplexity;
-
-        for (unsigned int i = 0; i < 10; i++)
-        {
-            timeComplexity.Start();
-
-            for (unsigned int s = 0; s < 1000000; s++)
-            {
-                vector.push_back(s);
-            }
-
-            timeComplexity.Stop();
-        }
-    }
+    BubbleSort<T> bubbleSort(vector);
+    TimeComplexity<T> timeComplexity(bubbleSort);
 
     std::cin.get();
 }
