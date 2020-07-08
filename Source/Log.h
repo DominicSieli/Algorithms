@@ -3,7 +3,16 @@
 #include <string>
 #include <iostream>
 
-#include "Color_Codes.h"
+enum LinuxColor : unsigned int
+{
+	RED = 31,
+	BLUE = 34,
+	CYAN = 36,
+	GREEN = 32,
+	WHITE = 37,
+	YELLOW = 33,
+	MAGENTA = 35
+};
 
 void Log(const LinuxColor &color, const std::string &text)
 {

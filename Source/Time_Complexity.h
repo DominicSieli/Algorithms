@@ -1,29 +1,55 @@
 #pragma once
 
+#include <chrono>
+
 #include "Log.h"
 
-void TimeComplexity(const std::vector<double> &timeComplexity)
+class TimeComplexity
 {
-    unsigned short int score = 0;
+private:
+    double delta = 0.00;
+    unsigned int complexity = 0;
+    unsigned int iterations = 0;
+    std::chrono::duration<double> duration;
+    std::chrono::time_point<std::chrono::_V2::system_clock> stop;
+    std::chrono::time_point<std::chrono::_V2::system_clock> start;
 
-    for (unsigned int i = 0; i < timeComplexity.size(); i++)
+public:
+    TimeComplexity() : delta(0.00), complexity(0), iterations(0) {}
+
+    ~TimeComplexity()
     {
-        if (timeComplexity[i] == timeComplexity[i + 1])
+        //PrintResult();
+        Log(GREEN, std::to_string(delta));
+    }
+
+    void PrintResult()
+    {
+        switch (complexity)
         {
-            score = 0;
+        case 0:
+            Log(GREEN, "Constant");
+            break;
+        case 1:
+            Log(YELLOW, "Good");
+            break;
+        case 2:
+            Log(RED, "Bad");
+            break;
         }
     }
 
-    switch (score)
+    void Start()
     {
-    case 0:
-        Log(GREEN, "Constant");
-        break;
-    case 1:
-        Log(YELLOW, "Good");
-        break;
-    case 2:
-        Log(RED, "Bad");
-        break;
+        iterations++;
+        start = std::chrono::high_resolution_clock::now();
     }
-}
+
+    void Stop()
+    {
+        stop = std::chrono::high_resolution_clock::now();
+        duration = stop - start;
+        delta += duration.count() * 1000.00;
+        delta = delta / (double)iterations;
+    }
+};

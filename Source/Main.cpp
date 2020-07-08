@@ -1,28 +1,26 @@
-#include <cmath>
 #include <vector>
 
-#include "Log.h"
 #include "Time_Complexity.h"
 
-double delta = 0.00;
-std::vector<int> input;
-std::vector<double> timeComplexity;
+std::vector<int> vector;
 
 int main()
 {
-    for (int i = 1; i <= 8; i++)
     {
-        for (int j = 0; j < pow(10, i); j++)
+        TimeComplexity timeComplexity;
+
+        for (unsigned int i = 0; i < 10; i++)
         {
-            input.push_back(j);
+            timeComplexity.Start();
+
+            for (unsigned int s = 0; s < 1000000; s++)
+            {
+                vector.push_back(s);
+            }
+
+            timeComplexity.Stop();
         }
-
-        timeComplexity.push_back(delta);
-
-        input.clear();
     }
-
-    TimeComplexity(timeComplexity);
 
     std::cin.get();
 }
