@@ -1,23 +1,29 @@
-#include <iostream>
+#pragma once
 
-#define LOG_RED(...) std::cout << "\033[1;31m" << (__VA_ARGS__) << "\033[0m" << '\n';
-#define LOG_GREEN(...) std::cout << "\033[1;32m" << (__VA_ARGS__) << "\033[0m" << '\n';
-#define LOG_YELLOW(...) std::cout << "\033[1;33m" << (__VA_ARGS__) << "\033[0m" << '\n';
+#include "Log.h"
 
-void TimeComplexity(const float &timeComplexity)
+void TimeComplexity(const std::vector<double> &timeComplexity)
 {
-    if (timeComplexity <= 0.33f)
+    unsigned short int score = 0;
+
+    for (unsigned int i = 0; i < timeComplexity.size(); i++)
     {
-        LOG_GREEN("GREEN")
+        if (timeComplexity[i] == timeComplexity[i + 1])
+        {
+            score = 0;
+        }
     }
 
-    if (timeComplexity > 0.33f && timeComplexity < 0.66f)
+    switch (score)
     {
-        LOG_YELLOW("YELLOW")
-    }
-
-    if (timeComplexity >= 0.66f)
-    {
-        LOG_RED("RED")
+    case 0:
+        Log(GREEN, "Constant");
+        break;
+    case 1:
+        Log(YELLOW, "Good");
+        break;
+    case 2:
+        Log(RED, "Bad");
+        break;
     }
 }
