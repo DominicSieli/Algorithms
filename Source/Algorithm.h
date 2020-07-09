@@ -5,5 +5,5 @@ class Algorithm
 {
 public:
     virtual ~Algorithm(){};
-    virtual void Run() = 0;
+    virtual void RunAlgorithm() = 0;
 };
