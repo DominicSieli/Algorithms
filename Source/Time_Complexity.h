@@ -3,7 +3,7 @@
 #include <chrono>
 
 #include "Log.h"
-#include "Algorithm.h"
+#include "Algorithms.h"
 
 template <typename T>
 class TimeComplexity
@@ -11,49 +11,53 @@ class TimeComplexity
 private:
     double delta = 0.00;
     Algorithm<T> &algorithm;
-    unsigned int complexity = 0;
     unsigned int iterations = 0;
+    unsigned int timeComplexity = 0;
     std::chrono::duration<double> duration;
     std::chrono::time_point<std::chrono::_V2::system_clock> stop;
     std::chrono::time_point<std::chrono::_V2::system_clock> start;
 
 public:
-    TimeComplexity(Algorithm<T> &algorithm) : delta(0.00), algorithm(algorithm), complexity(0), iterations(0)
+    TimeComplexity(Algorithm<T> &algorithm) : delta(0.00), algorithm(algorithm), iterations(0), timeComplexity(0)
     {
-        AnalyzeAlgorithm();
+        Analyze();
         PrintResult();
     }
 
     virtual ~TimeComplexity() {}
 
 private:
-    void Start()
+    void StartTimer()
     {
         iterations++;
         start = std::chrono::high_resolution_clock::now();
     }
 
-    void Stop()
+    void StopTimer()
     {
         stop = std::chrono::high_resolution_clock::now();
         duration = stop - start;
-        delta += duration.count() * 1000.00;
-        delta = delta / (double)iterations;
+        delta = (duration.count() * 1000.00) / (double)iterations;
     }
 
-    void AnalyzeAlgorithm()
+    void Analyze()
     {
-        Start();
-        algorithm.RunAlgorithm();
-        Stop();
+        for (unsigned int i = 0; i < 1000; i++)
+        {
+            StartTimer();
+            algorithm.Run();
+            StopTimer();
+        }
+
+        Log(GREEN, "Delta: " + std::to_string(delta));
     }
 
     void PrintResult()
     {
-        switch (complexity)
+        switch (timeComplexity)
         {
         case 0:
-            Log(GREEN, "Time Complexity: Constant - " + std::to_string(delta));
+            Log(GREEN, "Time Complexity: Constant");
             break;
         case 1:
             Log(YELLOW, "Good");

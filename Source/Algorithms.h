@@ -1,7 +1,14 @@
 #pragma once
 
 #include <vector>
-#include "Algorithm.h"
+
+template <typename T>
+class Algorithm
+{
+public:
+    virtual ~Algorithm(){};
+    virtual void Run() = 0;
+};
 
 template <typename T>
 class BubbleSort : public Algorithm<T>
@@ -13,10 +20,10 @@ private:
 public:
     BubbleSort(std::vector<T> &vector) : sorted(false), vector(vector)
     {
-        RunAlgorithm();
+        Run();
     }
 
-    void RunAlgorithm()
+    void Run()
     {
         while (sorted == false)
         {
