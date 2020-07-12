@@ -7,12 +7,11 @@
 class TimeComplexity
 {
 private:
-    double delta = 0.00;
-    unsigned int iterations = 0;
+    double time = 0.00;
     unsigned int timeComplexity = 0;
-    std::chrono::duration<double> deltaTime;
-    std::chrono::time_point<std::chrono::_V2::system_clock> stopTimer;
-    std::chrono::time_point<std::chrono::_V2::system_clock> startTimer;
+    std::chrono::duration<double> timeDelta;
+    std::chrono::time_point<std::chrono::_V2::system_clock> stopTime;
+    std::chrono::time_point<std::chrono::_V2::system_clock> startTime;
 
 public:
     TimeComplexity()
@@ -21,29 +20,28 @@ public:
 
     ~TimeComplexity()
     {
-        PrintResult();
+        CalculateTimeComplexity();
     }
 
-private:
     void StartTimer()
     {
-        iterations++;
-        startTimer = std::chrono::high_resolution_clock::now();
+        startTime = std::chrono::high_resolution_clock::now();
     }
 
     void StopTimer()
     {
-        stopTimer = std::chrono::high_resolution_clock::now();
-        deltaTime = stopTimer - startTimer;
-        delta = (deltaTime.count() * 1000.00) / iterations;
+        stopTime = std::chrono::high_resolution_clock::now();
+        timeDelta = stopTime - startTime;
+        time = timeDelta.count() * 1000.00;
     }
 
+private:
     void PrintResult()
     {
         switch (timeComplexity)
         {
         case 0:
-            Log(GREEN, "Time Complexity: Constant");
+            Log(GREEN, "Time: " + std::to_string(time));
             break;
         case 1:
             Log(YELLOW, "Good");
@@ -52,5 +50,10 @@ private:
             Log(RED, "Bad");
             break;
         }
+    }
+
+    void CalculateTimeComplexity()
+    {
+        PrintResult();
     }
 };

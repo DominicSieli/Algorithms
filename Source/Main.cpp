@@ -4,12 +4,19 @@
 #include "Algorithms.h"
 #include "Time_Complexity.h"
 
-TimeComplexity timeComplexity();
 std::vector<int> vector{5, 9, 3, 1, 6, 10, 4, 8, 2, 7};
 
 int main()
 {
-    Algorithm::BubbleSort(vector);
+    {
+        TimeComplexity timeComplexity;
+
+        timeComplexity.StartTimer();
+        Algorithm::BubbleSort(vector);
+        timeComplexity.StopTimer();
+    }
+
+    std::cout << '\n';
 
     for (unsigned int i = 0; i < vector.size(); i++)
     {
