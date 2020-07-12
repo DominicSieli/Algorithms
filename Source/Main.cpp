@@ -1,19 +1,17 @@
 #include <vector>
+#include <iostream>
 #include "Algorithms.h"
-#include "Time_Complexity.h"
 
-using T = int;
-std::vector<T> vector;
+std::vector<int> vector{5, 9, 3, 1, 6, 10, 4, 8, 2, 7};
 
 int main()
 {
-    for (unsigned int i = 10000; i > 0; i--)
-    {
-        vector.push_back(i);
-    }
+    Algorithm::BubbleSort(vector);
 
-    BubbleSort<T> bubbleSort(vector);
-    TimeComplexity<T> timeComplexity(bubbleSort);
+    for (unsigned int i = 0; i < vector.size(); i++)
+    {
+        std::cout << vector[i] << '\n';
+    }
 
     std::cin.get();
 }
