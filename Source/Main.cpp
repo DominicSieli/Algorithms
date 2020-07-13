@@ -1,20 +1,30 @@
 #include <vector>
 #include <iostream>
+#include <stdlib.h>
 
+#include "Timer.h"
 #include "Algorithms.h"
-#include "Time_Complexity.h"
 
-std::vector<int> vector{5, 9, 3, 1, 6, 10, 4, 8, 2, 7};
+Timer timer;
+std::vector<int> vector(10);
 
 int main()
 {
+    for (unsigned int i = 0; i < vector.size(); i++)
     {
-        TimeComplexity timeComplexity;
-
-        timeComplexity.StartTimer();
-        Algorithm::BubbleSort(vector);
-        timeComplexity.StopTimer();
+        vector[i] = rand() % 100 + 1;
     }
+
+    for (unsigned int i = 0; i < vector.size(); i++)
+    {
+        std::cout << vector[i] << '\n';
+    }
+
+    std::cout << '\n';
+
+    timer.StartTimer();
+    Algorithms::BubbleSort(vector);
+    timer.StopTimer();
 
     std::cout << '\n';
 

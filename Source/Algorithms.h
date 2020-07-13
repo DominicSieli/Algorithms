@@ -2,25 +2,28 @@
 
 #include <vector>
 
-namespace Algorithm
+namespace Algorithms
 {
     template <typename T>
     void BubbleSort(std::vector<T> &vector)
     {
-        bool sorted = false;
-
-        while (sorted == false)
+        if (vector.size() > 0)
         {
-            sorted = true;
+            bool sorted = false;
 
-            for (unsigned int i = 0; i < vector.size() - 1; i++)
+            while (sorted == false)
             {
-                if (vector[i] > vector[i + 1])
+                sorted = true;
+
+                for (unsigned int i = 0; i < vector.size() - 1; i++)
                 {
-                    sorted = false;
-                    T t = vector[i];
-                    vector[i] = vector[i + 1];
-                    vector[i + 1] = t;
+                    if (vector[i] > vector[i + 1])
+                    {
+                        sorted = false;
+                        auto vi = vector[i];
+                        vector[i] = vector[i + 1];
+                        vector[i + 1] = vi;
+                    }
                 }
             }
         }
