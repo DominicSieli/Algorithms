@@ -1,0 +1,10 @@
+-Algorithms
+
+Tree Traversal: Pre-Order, In-Order, Post-Order
+
+Graph Search: Depth First Search, Breadth First Search, Dijkstra’s
+
+Search: Binary
+
+Sorting: Merge Sort, Quick Sort
+
