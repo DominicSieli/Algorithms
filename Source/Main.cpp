@@ -1,34 +1,28 @@
 #include <vector>
 #include <iostream>
-#include <stdlib.h>
 
 #include "Timer.h"
-#include "Algorithms.h"
+#include "Cross_Sort.h"
 
 Timer timer;
-std::vector<int> vector(10);
+std::vector<int> vector {7,9,3,2,10,6,1,4,5,8};
 
 int main()
 {
-    for (unsigned int i = 0; i < vector.size(); i++)
-    {
-        vector[i] = rand() % 100 + 1;
-    }
-
-    for (unsigned int i = 0; i < vector.size(); i++)
+    for(unsigned int i = 0; i < vector.size(); i++)
     {
         std::cout << vector[i] << '\n';
     }
 
     std::cout << '\n';
 
-    timer.StartTimer();
-    Algorithms::BubbleSort(vector);
-    timer.StopTimer();
+    timer.Start_Timer();
+    Algorithms::Cross_Sort(vector);
+    timer.Stop_Timer();
 
     std::cout << '\n';
 
-    for (unsigned int i = 0; i < vector.size(); i++)
+    for(unsigned int i = 0; i < vector.size(); i++)
     {
         std::cout << vector[i] << '\n';
     }

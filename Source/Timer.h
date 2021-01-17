@@ -11,12 +11,12 @@ private:
     std::chrono::time_point<std::chrono::_V2::system_clock> startTime;
 
 public:
-    void StartTimer()
+    void Start_Timer()
     {
         startTime = std::chrono::high_resolution_clock::now();
     }
 
-    void StopTimer()
+    void Stop_Timer()
     {
         stopTime = std::chrono::high_resolution_clock::now();
         timeDelta = stopTime - startTime;
