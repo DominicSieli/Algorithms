@@ -17,7 +17,7 @@ int main()
     std::cout << '\n';
 
     timer.Start_Timer();
-    Algorithms::Merge_Sort(vector);
+    Algorithms::Merge_Sort(vector, 0, vector.size() - 1);
     timer.Stop_Timer();
 
     std::cout << '\n';

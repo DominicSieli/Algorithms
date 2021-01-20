@@ -22,7 +22,7 @@ namespace Algorithms
     template<typename T>
     void Merge(std::vector<T>& vector, unsigned int start_index, unsigned int middle_index, unsigned int end_index)
     {
-        unsigned int total_elements = end_index - start_index + 1;
+        unsigned int total_elements = (end_index - start_index) + 1;
 
         std::vector<T> temp_vector(total_elements);
 
@@ -62,7 +62,7 @@ namespace Algorithms
 
         for(unsigned int i = 0; i < total_elements; i++)
         {
-            vector[start_index + 1] = temp_vector[i];
+            vector[start_index + i] = temp_vector[i];
         }
 
         return;
