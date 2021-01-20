@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "Timer.h"
-#include "Cross_Sort.h"
+#include "Merge_Sort.h"
 
 Timer timer;
 std::vector<int> vector {7,9,3,2,10,6,1,4,5,8};
@@ -17,7 +17,7 @@ int main()
     std::cout << '\n';
 
     timer.Start_Timer();
-    Algorithms::Cross_Sort(vector);
+    Algorithms::Merge_Sort(vector);
     timer.Stop_Timer();
 
     std::cout << '\n';
