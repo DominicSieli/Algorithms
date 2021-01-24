@@ -5,52 +5,40 @@ namespace Algorithms
 	template<typename T>
 	void Cross_Sort(std::vector<T>& vector)
 	{
-		if(vector.size() < 2)
-        {
-            return;
-        }
-
 		bool sorted = false;
-		unsigned long long l_index = 0;
-		unsigned long long r_index = vector.size() - 1;
-		unsigned long long l_bound = 0;
-		unsigned long long r_bound = vector.size() - 1;
+		unsigned long long j = 0;
+		unsigned long long l = 0;
+		unsigned long long r = vector.size() - 1;
 
 		while(sorted == false)
 		{
 			sorted = true;
 
-			while(l_index < r_bound)
+			for(unsigned int i = l; i < r; i++)
 			{
-				if(l_index < r_index && vector[l_index] > vector[r_index])
+				j = (vector.size() - i) - 1;
+
+				if(i < j && vector[i] > vector[j])
 				{
 					sorted = false;
-					std::swap(vector[l_index], vector[r_index]);
+					std::swap(vector[i], vector[j]);
 				}
 
-				if(vector[l_index] > vector[l_index + 1])
+				if(vector[i] > vector[i + 1])
 				{
 					sorted = false;
-					std::swap(vector[l_index], vector[l_index + 1]);
+					std::swap(vector[i], vector[i + 1]);
 				}
 
-				if(vector[r_index] < vector[r_index - 1])
+				if(vector[j] < vector[j - 1])
 				{
 					sorted = false;
-					std::swap(vector[r_index], vector[r_index - 1]);
+					std::swap(vector[j], vector[j - 1]);
 				}
-
-				r_index--;
-				l_index++;
 			}
 
-			if(sorted == false)
-			{
-	            l_bound++;
-			    r_bound--;
-			    r_index = r_bound;
-			    l_index = l_bound;
-			}
+			l++;
+			r--;
 		}
 	}
 }
