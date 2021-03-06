@@ -2,30 +2,24 @@
 #include <iostream>
 
 #include "Timer.h"
-#include "Radix_Sort.h"
+#include "Binary_Search.h"
 
 Timer timer;
-std::vector<int> vector {7,9,3,2,10,6,1,4,5,8};
+std::vector<int> vector;
 
 int main()
 {
-    for(unsigned int i = 0; i < vector.size(); i++)
+    for(unsigned int i = 1; i < 11; i++)
     {
-        std::cout << vector[i] << '\n';
+        vector.push_back(i);
     }
 
-    std::cout << '\n';
-
     timer.Start_Timer();
-    Algorithms::Radix_Sort(vector);
+    std::cout << Algorithms::Binary_Search<int>(vector, 6);
+    std::cout << '\n';
     timer.Stop_Timer();
 
     std::cout << '\n';
-
-    for(unsigned int i = 0; i < vector.size(); i++)
-    {
-        std::cout << vector[i] << '\n';
-    }
 
     std::cin.get();
 }
