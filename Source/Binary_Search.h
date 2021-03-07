@@ -7,34 +7,42 @@
 namespace Algorithms
 {
     template<typename T>
-    T Binary_Search(std::vector<T>& vector, T data)
+    long long Binary_Search(std::vector<T>& vector, T data)
     {
         Cross_Sort(vector);
 
-        int index {};
-        unsigned int start = 0;
-        unsigned int end = vector.size();
+        unsigned int left = 0;
+        unsigned int median = 0;
+        unsigned int right = vector.size() - 1;
 
-        if(data < vector[0] || data > vector[vector.size() - 1])
+        if(data < vector[left] || data > vector[right])
         {
             return -1;
         }
 
-        while(vector[index] != data)
+        while(left <= right)
         {
-            index = start + (end - start) / 2;
+            median = left + (right - left) / 2;
 
-            if(vector[index] == data)
+            if(vector[left] == data)
             {
-                return index;
+                return left;
             }
-            else if(vector[index] > data)
+            else if(vector[right] == data)
             {
-                end = index;
+                return right;
             }
-            else if(vector[index] < data)
+            else if(vector[median] == data)
             {
-                start = index;
+                return median;
+            }
+            else if(vector[median] > data)
+            {
+                right = median - 1;
+            }
+            else if(vector[median] < data)
+            {
+                left = median + 1;
             }
         }
 
