@@ -11,6 +11,4 @@ int main()
 	{
         std::cout << i << ": " << Algorithms::Binary_Search<int>(vector, i) << '\n';
 	}
-
-    std::cin.get();
 }
